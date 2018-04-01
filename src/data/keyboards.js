@@ -21,7 +21,7 @@ function keyboardFromLines(lines) {
           return new Key({primary: key, shifted: null, modded: null});
         }
       } else if (key.length === 2) {
-        return new Key({primary: key[0], shifted: key[1], modded: key[2]});
+        return new Key({primary: key[0], shifted: key[1], modded: null});
       } else if (key.length === 3) {
         return new Key({primary: key[0], shifted: key[1], modded: key[2]});
       } else {

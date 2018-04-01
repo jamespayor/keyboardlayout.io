@@ -5,6 +5,23 @@ export const rightHandColumns = 6;
 export const keyboardRows = 4;
 export const keyboardRowLength = leftHandColumns + rightHandColumns;
 
+export function keyIndexToFingerIndex(keyIndex) {
+  if (keyIndex < leftHandColumns - 1) {
+    return keyIndex;
+  }
+  if (keyIndex === leftHandColumns - 1) {
+    return keyIndex - 1;
+  }
+  keyIndex -= leftHandColumns;
+  if (keyIndex < 2) {
+    return 4;
+  }
+  if (keyIndex < rightHandColumns - 1) {
+    return keyIndex - 1 + 4;
+  }
+  return 7;
+}
+
 export default class Keyboard {
   constructor(rows) {
     assert(rows.length === keyboardRows && rows.every(x => x.length === keyboardRowLength));

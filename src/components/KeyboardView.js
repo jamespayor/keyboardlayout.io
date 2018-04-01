@@ -1,23 +1,39 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Keyboard from '../models/Keyboard';
+import Keyboard, {keyIndexToFingerIndex} from '../models/Keyboard';
 import KeyView from "./KeyView";
+import StackPanel from './StackPanel';
 
-class KeyboardView extends Component {
+const styles = {
+  keyboardOuterContainer: {
+    background: '#CCC',
+  },
+  keyboardInnerContainer: {
+    position: 'relative',
+    margin: '2px',
+    width: '25em',
+    height: '14em',
+  }
+};
+
+export default class KeyboardView extends Component {
   static propTypes = {
     keyboard: PropTypes.instanceOf(Keyboard).isRequired,
+    highlightFingers: PropTypes.bool,
   };
-  renderRow = (row) =>
-    <div>
-      {row.map(key =>
-        <KeyView theKey={key}/>
+  renderRow = (row, rowIndex) =>
+    <StackPanel horizontal key={rowIndex} height={null}>
+      {row.map((key, keyIndex) =>
+        <KeyView key={keyIndex} theKey={key} fingerIndex={!this.props.highlightFingers ? undefined : keyIndexToFingerIndex(keyIndex)}/>
       )}
-    </div>;
+    </StackPanel>;
   render = () =>
-    <div>
-      {this.props.keyboard.rows.map(this.renderRow)}
+    <div style={styles.keyboardOuterContainer}>
+      <div style={styles.keyboardInnerContainer}>
+        <StackPanel>
+          {this.props.keyboard.rows.map(this.renderRow)}
+        </StackPanel>
+      </div>
     </div>;
 }
-
-export default KeyboardView;

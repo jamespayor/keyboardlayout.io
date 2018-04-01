@@ -21,11 +21,11 @@ export default class Key {
     return this._shifted || null;
   }
   get modded() {
-    return this._modded | null;
+    return this._modded || null;
   }
 
   /* Whether the key has a shifted value that is just the uppercase of its primary value. */
   get isStandardShifted() {
-    return this.primary && this.shifted && this.primary.toLowerCase() === this.shifted;
+    return this.primary && this.shifted && this.primary.toUpperCase() === this.shifted;
   }
 }
