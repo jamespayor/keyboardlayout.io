@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, Link, withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 
 import urls from './urls';
 import KeyboardLayoutStatsPage from './pages/KeyboardLayoutStatsPage';
+import EditKeyboardPage from './pages/EditKeyboardPage';
 import SaveAndLoadPage from './pages/SaveAndLoadPage';
 import InformationPage from './pages/InformationPage';
 
@@ -23,6 +24,7 @@ import Typography from 'material-ui/Typography';
 
 import IconMenu from 'material-ui-icons/Menu';
 import IconKeyboard from 'material-ui-icons/Keyboard';
+import IconEdit from 'material-ui-icons/Edit';
 import IconSave from 'material-ui-icons/Save';
 import IconInfo from 'material-ui-icons/Info';
 
@@ -90,9 +92,13 @@ class Main extends Component {
       <div>
         <div className={classes.toolbar} />
         <MenuList>
-          <MenuItem onClick={() => this.props.history.push(urls.stats)} selected={isActive(urls.stats)}>
+          <MenuItem onClick={() => this.props.history.push(urls.overview)} selected={isActive(urls.overview)}>
             <ListItemIcon><IconKeyboard/></ListItemIcon>
-            <ListItemText primary="Keyboard layout stats"/>
+            <ListItemText primary="Layout overview & stats"/>
+          </MenuItem>
+          <MenuItem onClick={() => this.props.history.push(urls.edit)} selected={isActive(urls.edit)}>
+            <ListItemIcon><IconEdit/></ListItemIcon>
+            <ListItemText primary="Edit layout"/>
           </MenuItem>
           <MenuItem onClick={() => this.props.history.push(urls.save)} selected={isActive(urls.save)}>
             <ListItemIcon><IconSave/></ListItemIcon>
@@ -149,8 +155,9 @@ class Main extends Component {
             <main className={classes.contentContainer}>
               <div className={classes.content}>
                 <Route exact path="/" component={KeyboardLayoutStatsPage}/>
-                <Route path={urls.save} component={SaveAndLoadPage}/>
-                <Route path={urls.information} component={InformationPage}/>
+                <Route exact path={urls.edit} component={EditKeyboardPage}/>
+                <Route exact path={urls.save} component={SaveAndLoadPage}/>
+                <Route exact path={urls.information} component={InformationPage}/>
               </div>
             </main>
           </StackPanel>

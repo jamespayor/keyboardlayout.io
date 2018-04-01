@@ -1,5 +1,6 @@
 export const internalUrls = {
-  stats: '/',
+  overview: '/',
+  edit: '/edit',
   save: '/save',
   information: '/help',
 };

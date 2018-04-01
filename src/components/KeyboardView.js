@@ -11,7 +11,7 @@ const styles = {
   },
   keyboardInnerContainer: {
     position: 'relative',
-    margin: '2px',
+    padding: '2px',
     width: '25em',
     height: '14em',
   }
