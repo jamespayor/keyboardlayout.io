@@ -14,6 +14,7 @@ import CssBaseline from 'material-ui/CssBaseline';
 
 import {withStyles} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
+import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import Hidden from 'material-ui/Hidden';
 import IconButton from 'material-ui/IconButton';
@@ -54,10 +55,15 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    ...theme.mixins.toolbar,
+    padding: '19px 0',
+    textAlign: 'center',
+  },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth + 24,
     [theme.breakpoints.up('md')]: {
+      width: drawerWidth,
       position: 'relative',
     },
   },
@@ -89,27 +95,24 @@ class Main extends Component {
     const {classes, theme} = this.props;
     const isActive = (loc) => this.props.location.pathname === loc;
     const drawerContent = (
-      <div>
-        <div className={classes.toolbar} />
-        <MenuList>
-          <MenuItem onClick={() => this.props.history.push(urls.overview)} selected={isActive(urls.overview)}>
-            <ListItemIcon><IconKeyboard/></ListItemIcon>
-            <ListItemText primary="Layout overview & stats"/>
-          </MenuItem>
-          <MenuItem onClick={() => this.props.history.push(urls.edit)} selected={isActive(urls.edit)}>
-            <ListItemIcon><IconEdit/></ListItemIcon>
-            <ListItemText primary="Edit layout"/>
-          </MenuItem>
-          <MenuItem onClick={() => this.props.history.push(urls.save)} selected={isActive(urls.save)}>
-            <ListItemIcon><IconSave/></ListItemIcon>
-            <ListItemText primary="Save and load"/>
-          </MenuItem>
-          <MenuItem onClick={() => this.props.history.push(urls.information)} selected={isActive(urls.information)}>
-            <ListItemIcon><IconInfo/></ListItemIcon>
-            <ListItemText primary="Help & information"/>
-          </MenuItem>
-        </MenuList>
-      </div>
+      <MenuList>
+        <MenuItem onClick={() => this.props.history.push(urls.overview)} selected={isActive(urls.overview)}>
+          <ListItemIcon><IconKeyboard/></ListItemIcon>
+          <ListItemText primary="Layout overview & stats"/>
+        </MenuItem>
+        <MenuItem onClick={() => this.props.history.push(urls.edit)} selected={isActive(urls.edit)}>
+          <ListItemIcon><IconEdit/></ListItemIcon>
+          <ListItemText primary="Edit layout"/>
+        </MenuItem>
+        <MenuItem onClick={() => this.props.history.push(urls.save)} selected={isActive(urls.save)}>
+          <ListItemIcon><IconSave/></ListItemIcon>
+          <ListItemText primary="Save and load"/>
+        </MenuItem>
+        <MenuItem onClick={() => this.props.history.push(urls.information)} selected={isActive(urls.information)}>
+          <ListItemIcon><IconInfo/></ListItemIcon>
+          <ListItemText primary="Help & information"/>
+        </MenuItem>
+      </MenuList>
     );
 
     return (
@@ -138,7 +141,13 @@ class Main extends Component {
             onClose={this.handleDrawerToggle}
             classes={{paper: classes.drawerPaper}}
             ModalProps={{keepMounted: true /* Better open performance on mobile. */}}>
-            {drawerContent}
+            <div>
+              <div className={classes.toolbar}>
+                <Typography variant='title'>Keyboard layout optimization</Typography>
+              </div>
+              <Divider/>
+              {drawerContent}
+            </div>
           </Drawer>
         </Hidden>
         <StackPanel horizontal stretchLast>
@@ -147,7 +156,10 @@ class Main extends Component {
               variant="permanent"
               open
               classes={{paper: classes.drawerPaper}}>
-              {drawerContent}
+              <div>
+                <div className={classes.toolbar} />
+                {drawerContent}
+              </div>
             </Drawer>
           </Hidden>
           <StackPanel stretchLast>
