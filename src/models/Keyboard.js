@@ -42,4 +42,5 @@ export default class Keyboard {
   get lowerRow() {
     return this.rows[3];
   }
+  get = ({rowIndex, keyIndex}) => this._rows[rowIndex][keyIndex];
 }

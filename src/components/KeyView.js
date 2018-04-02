@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Key from '../models/Key';
 
+import ButtonBase from 'material-ui/ButtonBase';
 import './KeyView.css'
 
 const highlightForFingerIndex = [
@@ -21,9 +22,12 @@ export default class KeyView extends Component {
     theKey: PropTypes.instanceOf(Key).isRequired,
     isSelected: PropTypes.bool,
     fingerIndex: PropTypes.number,
+    isClickable: PropTypes.bool,
+    onClick: PropTypes.func,
   };
   static defaultProps = {
     isSelected: false,
+    isClickable: false,
   };
 
   renderPrimary = () => !this.props.theKey.primary ? undefined : (
@@ -44,12 +48,21 @@ export default class KeyView extends Component {
     </div>
   );
 
+  renderSelectionEffect = () => !this.props.isSelected ? undefined : (
+    <div className="keySelectionEffect"/>
+  );
+
   render() {
-    const style = !this.props.fingerIndex && this.props.fingerIndex !== 0 ? undefined : {
-      background: highlightForFingerIndex[this.props.fingerIndex],
+    const style = {
+      background: !this.props.fingerIndex && this.props.fingerIndex !== 0 ? undefined : highlightForFingerIndex[this.props.fingerIndex],
+      ...(!this.props.isClickable ? {} : {
+        userSelect: 'none',
+        cursor: 'pointer',
+      }),
     };
     return (
-      <div className='keyContainer' style={style}>
+      <div className='keyContainer' style={style} onClick={() => this.props.isClickable && this.props.onClick && this.props.onClick()}>
+        {this.renderSelectionEffect()}
         {this.renderPrimary()}
         {this.renderShifted()}
         {this.renderModded()}
