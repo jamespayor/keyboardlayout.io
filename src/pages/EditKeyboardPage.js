@@ -14,7 +14,6 @@ import Paper from 'material-ui/Paper';
 import Tabs, {Tab} from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
 import Divider from "material-ui/Divider";
-import Key from "../models/Key";
 
 const swapModes = {
   nonModdedOnly: 'non-modded-only',
@@ -74,10 +73,10 @@ class EditKeyboardPage extends Component {
 
   handleTabChange = (event, value) => this.setState({tabValue: value, selectedKeyLocation: null});
 
-  render = () => console.log('keyboard:', this.props.keyboard) ||
+  render = () =>
     <div>
       <Typography variant='title' style={{paddingBottom: 20}}>
-        Edit layout
+        Manually edit layout
       </Typography>
 
       <Paper style={{minWidth: 560}}>

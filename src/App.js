@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 import urls from './urls';
 import KeyboardLayoutStatsPage from './pages/KeyboardLayoutStatsPage';
 import EditKeyboardPage from './pages/EditKeyboardPage';
+import OptimizeKeyboardPage from './pages/OptimizeKeyboardPage';
 import SaveAndLoadPage from './pages/SaveAndLoadPage';
 import InformationPage from './pages/InformationPage';
 
@@ -26,6 +27,7 @@ import Typography from 'material-ui/Typography';
 import IconMenu from 'material-ui-icons/Menu';
 import IconKeyboard from 'material-ui-icons/Keyboard';
 import IconEdit from 'material-ui-icons/Edit';
+import IconOptimize from 'material-ui-icons/Build';
 import IconSave from 'material-ui-icons/Save';
 import IconInfo from 'material-ui-icons/Info';
 
@@ -104,6 +106,10 @@ class Main extends Component {
           <ListItemIcon><IconEdit/></ListItemIcon>
           <ListItemText primary="Edit layout"/>
         </MenuItem>
+        <MenuItem onClick={() => this.props.history.push(urls.optimize)} selected={isActive(urls.optimize)}>
+          <ListItemIcon><IconOptimize/></ListItemIcon>
+          <ListItemText primary="Optimize layout"/>
+        </MenuItem>
         <MenuItem onClick={() => this.props.history.push(urls.save)} selected={isActive(urls.save)}>
           <ListItemIcon><IconSave/></ListItemIcon>
           <ListItemText primary="Save and load"/>
@@ -168,6 +174,7 @@ class Main extends Component {
               <div className={classes.content}>
                 <Route exact path="/" component={KeyboardLayoutStatsPage}/>
                 <Route exact path={urls.edit} component={EditKeyboardPage}/>
+                <Route exact path={urls.optimize} component={OptimizeKeyboardPage}/>
                 <Route exact path={urls.save} component={SaveAndLoadPage}/>
                 <Route exact path={urls.information} component={InformationPage}/>
               </div>

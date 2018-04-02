@@ -20,7 +20,7 @@ function swapKeys({firstKeyLocation, secondKeyLocation, mode}, keyboard) {
   return keyboard.update({keyLocation: firstKeyLocation, keyValue: newFirstKey}, {keyLocation: secondKeyLocation, keyValue: newSecondKey});
 }
 
-export default function keyboard(keyboard = defaultKeyboard, action) {
+export default function keyboardReducer(keyboard = defaultKeyboard, action) {
   switch (action.type) {
     case 'SWAP_KEYS':
       return swapKeys(action, keyboard);
