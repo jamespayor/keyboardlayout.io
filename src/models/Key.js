@@ -28,4 +28,8 @@ export default class Key {
   get isStandardShifted() {
     return this.primary && this.shifted && this.primary.toUpperCase() === this.shifted;
   }
+
+  updatePrimary = (newPrimary) => new Key({primary: newPrimary,   shifted: this.shifted, modded: this.modded});
+  updateShifted = (newShifted) => new Key({primary: this.primary, shifted: newShifted,   modded: this.modded});
+  updateModded  = (newModded)  => new Key({primary: this.primary, shifted: this.shifted, modded: newModded  });
 }

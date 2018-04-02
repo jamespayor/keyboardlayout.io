@@ -45,6 +45,8 @@ export const DVORAK = keyboardFromLines([
   ";:  qQ  jJ  kK  xX    bB  mM  wW  vV  zZ  /?\\",
 ]);
 
+export const defaultKeyboard = QWERTY;
+
 export default {
   QWERTY,
   DVORAK,

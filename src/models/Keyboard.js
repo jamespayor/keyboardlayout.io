@@ -43,4 +43,17 @@ export default class Keyboard {
     return this.rows[3];
   }
   get = ({rowIndex, keyIndex}) => this._rows[rowIndex][keyIndex];
+
+  update = (...keyLocationsAndValues) => {
+    const updates = {};
+    for (const {keyLocation, keyValue} of keyLocationsAndValues) {
+      const {rowIndex, keyIndex} = keyLocation;
+      if (!updates[rowIndex]) {
+        updates[rowIndex] = {[keyIndex]: keyValue};
+      } else {
+        updates[rowIndex][keyIndex] = keyValue;
+      }
+    }
+    return new Keyboard(this.rows.map((row, rowIndex) => row.map((key, keyIndex) => (updates[rowIndex] && updates[rowIndex][keyIndex]) || key)));
+  }
 }
