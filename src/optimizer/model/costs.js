@@ -59,10 +59,10 @@ export function bigramCost(firstRowIndex, firstKeyIndex, secondRowIndex, secondK
 
     // First we multiply the cost based on row delta.
     const rowDelta = firstRowIndex > secondRowIndex ? firstRowIndex - secondRowIndex : secondRowIndex - firstRowIndex;
-    const rowCostMultiplier = rowDelta === 0 ? 1.0
+    const rowCostMultiplier = rowDelta === 0 ? 1.1 // We'd rather have pressed two different keys, hence costing 1.1x base cost for double presses.
                             : rowDelta === 1 ? 1.8
-                            : rowDelta === 2 ? 2.5
-                            :                  3.5;
+                            : rowDelta === 2 ? 2.3
+                            :                  3.0;
 
     // Second we multiply the cost if the column has changed.
     const columnCostMultiplier =
@@ -75,5 +75,62 @@ export function bigramCost(firstRowIndex, firstKeyIndex, secondRowIndex, secondK
     return rowCostMultiplier * columnCostMultiplier * baseCost;
   }
 
-  // TODO: Other bigram costs.
+  if (secondFinger === 4) {
+    // Second finger is pinky.
+
+    if (firstFinger === 0) {
+      // Pinky and index combination isn't so nice.
+      // It's worse if the hand is stretch apart, because they're not in home columns.
+      if (firstColumn === 1 && secondColumn === 4) {
+        // Home columns. No particular synergy, slight anti-synergy.
+        return 1.1 * baseCost;
+      }
+      // Stretched out case. More anti-synergy.
+      // Note that a bunch of the stretch cost is integrated into the base cost.
+      // The reason to penalize for stretch here is that it would have been better for the next letter
+      // to be typed by the other hand, rather than needing to type two characters on the one hand with
+      // a stretched out pinky.
+      return 1.2 * baseCost;
+    }
+
+    // Here it's a pinky and middle/ring combination. This case is more interesting.
+    // If the pinky has a good vertical offset (slightly below the middle/ring finger), the bigram is easier to type.
+    if (secondColumn === 4) {
+      // Pinky is in its home column, and so no weird stretching needs to be accounted for.
+      const rowDelta = secondRowIndex - firstRowIndex;
+      if (rowDelta === 1) {
+        // Ideal synergy on top of base costs.
+        return 0.8 * baseCost;
+      }
+      if (rowDelta === 0) {
+        // Same row, which is probably close to base cost.
+        return baseCost;
+      }
+      if (rowDelta < 0) {
+        // Pinky is above the middle/ring finger. This is pretty awkward to type, and basically involves lifting the hand.
+        return rowDelta <= -2 ? 1.6 * baseCost : 1.4 * baseCost;
+      }
+      if (rowDelta === 2) {
+        // This is actually reasonable to type with the middle finger.
+        // Ring finger has a sad time if you try this though.
+        return firstFinger === 1 ? 0.9 * baseCost : 1.1 * baseCost;
+      }
+      // Remaining case involves a pretty large difference, and needs hand lifting.
+      return 1.4 * baseCost;
+
+    } else {
+      // In this case, the pinky is not in its home column, which means it's stretched.
+      // As you can verify, this makes it particular awkward to type bigrams using the ring finger.
+
+      if (firstFinger === 1) {
+        // Middle finger and stretched-to-the-right pinky.
+
+        // TODO.
+
+      }
+
+    }
+
+  }
+  return baseCost;
 }
