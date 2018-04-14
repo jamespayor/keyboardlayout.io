@@ -9,15 +9,15 @@
 // The hope is that when you optimize for smooth easy-to-type pairs of characters, this lets you chain together
 // into "comfortable ultra-fast typing", insofar as that's possible.
 
-// TODO: Examine base costs in light of "comfortable fast typing" metric, bearing in mind that hands can move from the home row.
 
 export const baseCosts = [
                // Pinky Ring Mid Index Index  Index Index Mid Ring Pinky Pinky
-/*   Top row */ [  7.0, 5.0, 3.5, 2.5, 3.5,     3.5, 2.5, 3.5, 5.0, 7.0, 13.0],
-/* Upper row */ [  6.0, 4.0, 2.5, 1.5, 3.0,     3.0, 1.5, 2.5, 4.0, 6.0, 10.0],
-/*  Home row */ [  4.5, 3.0, 1.5, 1.0, 1.4,     1.4, 1.0, 1.5, 3.0, 4.5, 7.5 ],
-/* Lower row */ [  6.0, 5.0, 3.0, 1.2, 2.0,     2.0, 1.2, 3.0, 4.0, 6.0, 9.0 ],
+/*   Top row */ [  6.0, 3.0, 2.1, 1.8, 2.5,     2.5, 1.8, 2.1, 3.0, 6.0, 8.0 ],
+/* Upper row */ [  3.2, 2.5, 1.6, 1.3, 2.0,     2.0, 1.3, 1.6, 2.5, 3.2, 6.5 ],
+/*  Home row */ [  2.6, 1.6, 1.2, 1.0, 1.4,     1.4, 1.0, 1.2, 1.6, 2.6, 4.7 ],
+/* Lower row */ [  3.0, 2.2, 2.4, 1.2, 1.8,     1.8, 1.2, 2.4, 2.2, 3.0, 6.0 ],
 ];
+
 
 const fingerIndices = [0, 1, 2, 3, 3,  4, 4, 5, 6, 7, 7];
 const rightColumnFingers = [0, 0, 1, 2, 3, 4, 4];
