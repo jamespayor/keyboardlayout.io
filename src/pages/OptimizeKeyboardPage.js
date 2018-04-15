@@ -33,11 +33,11 @@ class OptimizeKeyboardPage extends Component {
 
   render = () =>
     <div>
-      <Typography variant='title' style={{paddingBottom: 20}}>
+      <Typography variant='headline' style={{paddingBottom: 20}}>
         Automatically optimize layout
       </Typography>
 
-      <Paper style={{minWidth: 560}}>
+      <Paper style={{minWidth: 560, width: 560}}>
         <Typography component='div' variant='subheading' style={{padding: '24px 0 0 24px'}}>
           Current layout
         </Typography>

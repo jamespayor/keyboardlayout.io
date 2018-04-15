@@ -75,7 +75,7 @@ class EditKeyboardPage extends Component {
 
   render = () =>
     <div>
-      <Typography variant='title' style={{paddingBottom: 20}}>
+      <Typography variant='headline' style={{paddingBottom: 20}}>
         Manually edit layout
       </Typography>
 

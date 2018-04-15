@@ -2,26 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import Key from '../models/Key';
-
-import ButtonBase from 'material-ui/ButtonBase';
 import './KeyView.css'
-
-const highlightForFingerIndex = [
-  '#FDD',
-  '#FED',
-  '#FEE',
-  '#DEF',
-  '#EDF',
-  '#FEE',
-  '#FED',
-  '#FDD',
-];
 
 export default class KeyView extends Component {
   static propTypes = {
     theKey: PropTypes.instanceOf(Key).isRequired,
     isSelected: PropTypes.bool,
-    fingerIndex: PropTypes.number,
+    highlightColor: PropTypes.string,
     isClickable: PropTypes.bool,
     onClick: PropTypes.func,
   };
@@ -54,7 +41,7 @@ export default class KeyView extends Component {
 
   render() {
     const style = {
-      background: !this.props.fingerIndex && this.props.fingerIndex !== 0 ? undefined : highlightForFingerIndex[this.props.fingerIndex],
+      background: this.props.highlightColor || undefined,
       ...(!this.props.isClickable ? {} : {
         userSelect: 'none',
         cursor: 'pointer',

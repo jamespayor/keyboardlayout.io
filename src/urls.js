@@ -1,9 +1,9 @@
 export const internalUrls = {
-  overview: '/',
+  about: '/',
+  stats: '/stats',
   edit: '/edit',
   optimize: '/optimize',
   save: '/save',
-  information: '/help',
 };
 
 export default {

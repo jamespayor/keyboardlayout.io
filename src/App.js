@@ -7,7 +7,7 @@ import KeyboardLayoutStatsPage from './pages/KeyboardLayoutStatsPage';
 import EditKeyboardPage from './pages/EditKeyboardPage';
 import OptimizeKeyboardPage from './pages/OptimizeKeyboardPage';
 import SaveAndLoadPage from './pages/SaveAndLoadPage';
-import InformationPage from './pages/InformationPage';
+import AboutPage from './pages/AboutPage';
 
 import 'typeface-roboto'
 import 'typeface-roboto-mono'
@@ -80,9 +80,9 @@ const styles = theme => ({
     display: 'flex',
     position: 'relative',
     flex: '0 0 auto',
-    height: 0,
+    maxWidth: '100%',
     backgroundColor: theme.palette.background.default,
-    margin: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3,
   },
 });
 
@@ -98,7 +98,11 @@ class Main extends Component {
     const isActive = (loc) => this.props.location.pathname === loc;
     const drawerContent = (
       <MenuList>
-        <MenuItem onClick={() => this.props.history.push(urls.overview)} selected={isActive(urls.overview)}>
+        <MenuItem onClick={() => this.props.history.push(urls.about)} selected={isActive(urls.about)}>
+          <ListItemIcon><IconInfo/></ListItemIcon>
+          <ListItemText primary="About this app"/>
+        </MenuItem>
+        <MenuItem onClick={() => this.props.history.push(urls.stats)} selected={isActive(urls.stats)}>
           <ListItemIcon><IconKeyboard/></ListItemIcon>
           <ListItemText primary="Layout overview & stats"/>
         </MenuItem>
@@ -113,10 +117,6 @@ class Main extends Component {
         <MenuItem onClick={() => this.props.history.push(urls.save)} selected={isActive(urls.save)}>
           <ListItemIcon><IconSave/></ListItemIcon>
           <ListItemText primary="Save and load"/>
-        </MenuItem>
-        <MenuItem onClick={() => this.props.history.push(urls.information)} selected={isActive(urls.information)}>
-          <ListItemIcon><IconInfo/></ListItemIcon>
-          <ListItemText primary="Help & information"/>
         </MenuItem>
       </MenuList>
     );
@@ -172,11 +172,11 @@ class Main extends Component {
             <div className={classes.toolbar} />
             <main className={classes.contentContainer}>
               <div className={classes.content}>
-                <Route exact path="/" component={KeyboardLayoutStatsPage}/>
+                <Route exact path={urls.about} component={AboutPage}/>
+                <Route exact path={urls.stats} component={KeyboardLayoutStatsPage}/>
                 <Route exact path={urls.edit} component={EditKeyboardPage}/>
                 <Route exact path={urls.optimize} component={OptimizeKeyboardPage}/>
                 <Route exact path={urls.save} component={SaveAndLoadPage}/>
-                <Route exact path={urls.information} component={InformationPage}/>
               </div>
             </main>
           </StackPanel>

@@ -31,8 +31,9 @@ export function bigramCost(firstRowIndex, firstKeyIndex, secondRowIndex, secondK
   const secondFingerIndex = fingerIndices[secondKeyIndex];
 
   if ((firstFingerIndex < 4) !== (secondFingerIndex < 4)) {
-    // Left hand and right hand. For this case, we're just paying the base costs, as there aren't synergies or anti-synergies to track.
-    return baseCost;
+    // Left hand and right hand. For this case, we're paying close to base costs, but swapping hands is nice to have.
+    // (The base costs are higher than they would be if you were always swapping hands, due to contortions of the same hand.)
+    return 0.93 * baseCost;
   }
 
   // Either both fingers are on the left, or both are on the right.
