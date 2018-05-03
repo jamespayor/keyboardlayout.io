@@ -131,7 +131,9 @@ export function bigramCost(firstRowIndex, firstKeyIndex, secondRowIndex, secondK
       }
 
     }
-
   }
+
+  // TODO: index and middle, index and ring, middle and ring
+
   return baseCost;
 }
