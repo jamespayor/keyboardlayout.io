@@ -33,7 +33,7 @@ import IconInfo from 'material-ui-icons/Info';
 
 import StackPanel from './components/StackPanel';
 
-const drawerWidth = 280;
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
@@ -104,7 +104,7 @@ class Main extends Component {
         </MenuItem>
         <MenuItem onClick={() => this.props.history.push(urls.stats)} selected={isActive(urls.stats)}>
           <ListItemIcon><IconKeyboard/></ListItemIcon>
-          <ListItemText primary="Layout overview & stats"/>
+          <ListItemText primary="Layout stats"/>
         </MenuItem>
         <MenuItem onClick={() => this.props.history.push(urls.edit)} selected={isActive(urls.edit)}>
           <ListItemIcon><IconEdit/></ListItemIcon>
