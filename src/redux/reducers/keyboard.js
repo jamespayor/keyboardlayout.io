@@ -22,10 +22,12 @@ function swapKeys({firstKeyLocation, secondKeyLocation, mode}, keyboard) {
 
 export default function keyboardReducer(keyboard = defaultKeyboard, action) {
   switch (action.type) {
-    case 'SWAP_KEYS':
+    case 'KEYBOARD_SWAP_KEYS':
       return swapKeys(action, keyboard);
-    case 'CHANGE_KEY':
+    case 'KEYBOARD_CHANGE_KEY':
       return keyboard.update(action);
+    case 'KEYBOARD_SET':
+      return action.keyboard;
     default:
       return keyboard;
   }

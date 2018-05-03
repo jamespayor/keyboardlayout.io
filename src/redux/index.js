@@ -12,11 +12,16 @@ const reducer = compose(mergePersistedState((initialState, persistedState) => {
     return {
       ...initialState,
       ...persistedState,
+      optimizer: initialState.optimizer,
       keyboard: new Keyboard(persistedState.keyboard._rows.map(row => row.map(
         keyObj => new Key({primary: keyObj._primary, shifted: keyObj._shifted, modded: keyObj._modded})))),
     }
   } else {
-    return {...initialState, ...persistedState};
+    return {
+      ...initialState,
+      ...persistedState,
+      optimizer: initialState.optimizer,
+    };
   }
 }))(rootReducer);
 const storage = compose(localStorageFilter(['keyboard']))(localStorageAdapter(window.localStorage));
