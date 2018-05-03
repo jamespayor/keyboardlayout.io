@@ -8,7 +8,7 @@ import KeyboardView from '../components/KeyboardView';
 
 import {setKeyboard} from "../redux/actions/keyboard";
 import {toggleKeySelection, toggleRowSelection} from '../redux/actions/optimizer/selection';
-import {startOptimization, stopOptimization} from '../redux/actions/optimizer';
+import {startOptimization, stopOptimization} from '../redux/actions/optimizer/running';
 import {clearKeyboardCandidate} from "../redux/actions/optimizer/candidate";
 
 import Button from 'material-ui/Button';
@@ -122,7 +122,7 @@ class OptimizeKeyboardPage extends Component {
           Optimized layout
         </Typography>
         <Typography component='div' style={{padding: '16px 24px 24px 24px'}}>
-          {this.props.candidate ? ["Best candidate: ", <strong>{this.props.candidate.cost.toFixed(2)} overall strain</strong>] : "Awaiting new candidates..."}
+          {this.props.candidate ? ["Best candidate: ", <strong key={1}>{this.props.candidate.cost.toFixed(2)} overall strain</strong>] : "Awaiting new candidates..."}
         </Typography>
         {this.renderOptimizedKeyboardCandidate()}
         <div style={{position: 'relative', display: 'flex', alignItems: 'center', flexDirection: 'column', paddingBottom: 8 * 3}}>

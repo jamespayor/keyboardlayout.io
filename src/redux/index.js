@@ -6,6 +6,8 @@ import rootReducer from './reducers';
 import initialState from './initial-state';
 import Keyboard from "../models/Keyboard";
 import Key from "../models/Key";
+import optimizerListener from '../optimizer';
+import {updateKeyboardCandidate} from "./actions/optimizer/candidate";
 
 const reducer = compose(mergePersistedState((initialState, persistedState) => {
   if (persistedState.keyboard) {
@@ -28,3 +30,5 @@ const storage = compose(localStorageFilter(['keyboard']))(localStorageAdapter(wi
 const enhancer = persistState(storage, 'keyboard-layout');
 
 export const store = createStore(reducer, initialState, enhancer);
+
+store.subscribe(() => optimizerListener(store.getState(), (cost, keyboard) => store.dispatch(updateKeyboardCandidate(cost, keyboard))));

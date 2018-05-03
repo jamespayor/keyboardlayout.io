@@ -53,7 +53,7 @@ export default class KeyboardView extends Component {
         <KeyView key={keyIndex}
                  theKey={key}
                  highlightColor={this.props.highlightFingers ? highlightForFingerIndex[keyIndexToFingerIndex(keyIndex)]
-                                                             : this.props.heatmap ? console.log(this.props.heatmap) || heatmapToColor(this.props.heatmap[rowIndex][keyIndex]) : undefined}
+                                                             : this.props.heatmap ? heatmapToColor(this.props.heatmap[rowIndex][keyIndex]) : undefined}
                  isSelected={!!selectedKeyIndices[keyIndex]}
                  isClickable={!!this.props.onKeyClicked}
                  onClick={() => this.props.onKeyClicked && this.props.onKeyClicked(rowIndex, keyIndex)}/>
