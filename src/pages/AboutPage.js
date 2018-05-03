@@ -184,7 +184,8 @@ class AboutPage extends Component {
         RSI
       </Typography>
       <Typography gutterBottom>
-        I've been a DVORAK user throughout the years, and man it has hurt my pinkies. I've gotten some experience navigating RSI, and some tricks, that I'll take this opportunity to share.
+        I've been a DVORAK user throughout the years, and man it has hurt my pinkies.
+        I've gotten some experience navigating RSI, and will take this opportunity to share some info and tricks.
         (No guarantee that individual things will be helpful, but it's important to have a lot of suggestions to try.)
         <ul>
           <li>
@@ -198,16 +199,18 @@ class AboutPage extends Component {
             I still find self-massage quite helpful, despite being ostensibly free from RSI these days.
           </li>
           <li>
-            Try changing keyboard arrangements and layouts. Insofar as your current setup incentivizes twisted movements of your wrists and fingers, you might find relief from
-            e.g. arranging your keyboard so that your arms can do more of the movement. (As opposed to your wrists and fingers.)
-            For instance, I found it was important to slope my keyboard away from me (which is not the standard direction) to stop contorting my wrists while typing.
+            Try changing keyboard arrangements and layouts.
+            Insofar as your current setup incentivizes twisting movements in your wrists and fingers, you might find relief from
+            e.g. rearranging your keyboard so that your arms can do more of the movement.
+            (Your wrists and fingers are the places with small delicate muscles - try to minimize the load on them.)
+            For instance, I found it was important to slope my keyboard <em>away</em> from me to stop contorting my wrists while typing.
           </li>
           <li>
-            Beware braces that teach you to have atrophied muscles, and put increased strain function your wrists and fingers.
+            Beware arm and wrist braces that teach you to have atrophied muscles, and put increased strain on your wrists and fingers.
             I think braces are harmful for me personally, and so recommend caution with them in general - be sure to notice what effects they have for you.
           </li>
         </ul>
-        That's all I have. Good luck.
+        That's all I have for you. Good luck.
       </Typography>
 
       <div style={{paddingBottom: 200}} />
