@@ -77,7 +77,7 @@ class AboutPage extends Component {
       <Typography variant='headline' gutterBottom>
         Finding your ideal keyboard layout
       </Typography>
-      <Typography gutterBottom>
+      <Typography component='div' gutterBottom>
         Most keyboard layouts suck, and you deserve better. This app is a package with:
         <ul>
           <li>A <em>cost model</em> that evaluates how good keyboard layouts are (for different workloads).</li>
@@ -147,7 +147,7 @@ class AboutPage extends Component {
           <KeyboardBigramCostView keyboard={this.props.keyboard}/>
         </div>
       </Paper>
-      <Typography style={{marginBottom: 20}}>
+      <Typography component='div' style={{marginBottom: 20}}>
         Bigram costs bring a lot of richness into the model, such as:
         <ul>
           <li>Having to stretch and contort your hand is awful.</li>
@@ -183,7 +183,7 @@ class AboutPage extends Component {
       <Typography variant='headline' style={{paddingBottom: 20}}>
         RSI
       </Typography>
-      <Typography gutterBottom>
+      <Typography component='div' gutterBottom>
         I've been a DVORAK user throughout the years, and man it has hurt my pinkies.
         I've gotten some experience navigating RSI, and will take this opportunity to share some info and tricks.
         (No guarantee that individual things will be helpful, but it's important to have a lot of suggestions to try.)
