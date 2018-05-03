@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom';
 
 import urls from './urls';
+import AboutPage from './pages/AboutPage';
 import KeyboardLayoutStatsPage from './pages/KeyboardLayoutStatsPage';
 import EditKeyboardPage from './pages/EditKeyboardPage';
 import OptimizeKeyboardPage from './pages/OptimizeKeyboardPage';
 import SaveAndLoadPage from './pages/SaveAndLoadPage';
-import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import 'typeface-roboto'
 import 'typeface-roboto-mono'
@@ -172,11 +173,14 @@ class Main extends Component {
             <div className={classes.toolbar} />
             <main className={classes.contentContainer}>
               <div className={classes.content}>
-                <Route exact path={urls.about} component={AboutPage}/>
-                <Route exact path={urls.stats} component={KeyboardLayoutStatsPage}/>
-                <Route exact path={urls.edit} component={EditKeyboardPage}/>
-                <Route exact path={urls.optimize} component={OptimizeKeyboardPage}/>
-                <Route exact path={urls.save} component={SaveAndLoadPage}/>
+                <Switch>
+                  <Route exact path={urls.about} component={AboutPage}/>
+                  <Route exact path={urls.stats} component={KeyboardLayoutStatsPage}/>
+                  <Route exact path={urls.edit} component={EditKeyboardPage}/>
+                  <Route exact path={urls.optimize} component={OptimizeKeyboardPage}/>
+                  <Route exact path={urls.save} component={SaveAndLoadPage}/>
+                  <Route component={NotFoundPage}/>
+                </Switch>
               </div>
             </main>
           </StackPanel>
