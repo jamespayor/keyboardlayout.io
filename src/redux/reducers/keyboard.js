@@ -1,5 +1,6 @@
 import {defaultKeyboard} from '../../data/keyboards';
-import Key from "../../models/Key";
+import Key from '../../models/Key';
+import {keyboardActionTypes} from '../actions/keyboard';
 
 function swapKeys({firstKeyLocation, secondKeyLocation, mode}, keyboard) {
   const firstKey = keyboard.get(firstKeyLocation);
@@ -22,11 +23,11 @@ function swapKeys({firstKeyLocation, secondKeyLocation, mode}, keyboard) {
 
 export default function keyboardReducer(keyboard = defaultKeyboard, action) {
   switch (action.type) {
-    case 'KEYBOARD_SWAP_KEYS':
+    case keyboardActionTypes.KEYBOARD_SWAP_KEYS:
       return swapKeys(action, keyboard);
-    case 'KEYBOARD_CHANGE_KEY':
+    case keyboardActionTypes.KEYBOARD_CHANGE_KEY:
       return keyboard.update(action);
-    case 'KEYBOARD_SET':
+    case keyboardActionTypes.KEYBOARD_SET:
       return action.keyboard;
     default:
       return keyboard;

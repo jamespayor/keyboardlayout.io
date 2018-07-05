@@ -1,4 +1,5 @@
-import {keyboardRowLength} from "../../../models/Keyboard";
+import {keyboardRowLength} from '../../../models/Keyboard';
+import {optimizerSelectionActionTypes} from '../../actions/optimizer/selection';
 
 function toggleKey({rowIndex, keyIndex}, selection) {
   const filteredSelection = selection.filter(({rowIndex: otherRowIndex, keyIndex: otherKeyIndex}) => otherRowIndex !== rowIndex || otherKeyIndex !== keyIndex);
@@ -23,9 +24,9 @@ function toggleRow(rowIndex, selection) {
 
 export default function selectionReducer(selection = [], action) {
   switch (action.type) {
-    case 'OPTIMIZER_SELECTION_TOGGLE_KEY':
+    case optimizerSelectionActionTypes.OPTIMIZER_SELECTION_TOGGLE_KEY:
       return toggleKey(action, selection);
-    case 'OPTIMIZER_SELECTION_TOGGLE_ROW':
+    case optimizerSelectionActionTypes.OPTIMIZER_SELECTION_TOGGLE_ROW:
       return toggleRow(action.rowIndex, selection);
     default:
       return selection;

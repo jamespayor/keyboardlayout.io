@@ -1,8 +1,12 @@
+export const optimizerRunningActionTypes = {
+  OPTIMIZATION_START: 'OPTIMIZATION_START',
+  OPTIMIZATION_STOP: 'OPTIMIZATION_STOP',
+};
 
 export const startOptimization = {
-  type: 'OPTIMIZATION_START',
+  type: optimizerRunningActionTypes.OPTIMIZATION_START,
 };
 
 export const stopOptimization = {
-  type: 'OPTIMIZATION_STOP',
+  type: optimizerRunningActionTypes.OPTIMIZATION_STOP,
 };
