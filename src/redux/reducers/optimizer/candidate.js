@@ -1,9 +1,13 @@
 import {optimizerCandidateActionTypes} from '../../actions/optimizer/candidate';
 
-export default function candidateReducer(state = null, action) {
+export default function candidateReducer(candidate = null, action, running = false) {
   switch (action.type) {
     case optimizerCandidateActionTypes.OPTIMIZER_CANDIDATE_UPDATE:
-      if (state && state.cost && action.cost > state.cost) {
+      if (!running) {
+        // Don't update the candidate if optimization is stopped.
+        return candidate;
+      }
+      if (candidate && candidate.cost && action.cost > candidate.cost) {
         console.warn("Updating candidate to one with worse cost.");
       }
       return {
@@ -13,6 +17,6 @@ export default function candidateReducer(state = null, action) {
     case optimizerCandidateActionTypes.OPTIMIZER_CANDIDATE_CLEAR:
       return null;
     default:
-      return state;
+      return candidate;
   }
 }
