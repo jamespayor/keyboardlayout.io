@@ -31,7 +31,7 @@ const baseCostHeatmap = heatmapify(baseCosts);
 const bigramHeatmap = ({rowIndex, keyIndex}) => heatmapify(
   _.range(keyboardRows).map(secondRowIndex =>
     _.range(keyboardRowLength).map(secondKeyIndex =>
-      0.5 * bigramCost(rowIndex, keyIndex, secondRowIndex, secondKeyIndex)
+      bigramCost(rowIndex, keyIndex, secondRowIndex, secondKeyIndex) - baseCosts[rowIndex][keyIndex]
     )
   )
 );
@@ -61,7 +61,7 @@ class KeyboardBigramCostView extends Component {
                   selectedKeys={[this.state.selectedKeyLocation]} onKeyClicked={(rowIndex, keyIndex) => this.setState({selectedKeyLocation: {rowIndex, keyIndex}})} />;
 }
 
-const Ext = ({to, children}) => <a href={to} target='_blank'>{children}</a>;
+const ExtLink = ({to, children}) => <a href={to} target='_blank'>{children}</a>;
 
 
 class AboutPage extends Component {
@@ -86,8 +86,8 @@ class AboutPage extends Component {
         </ul>
       </Typography>
       <Typography style={{marginBottom: 20}}>
-        Note that I've built this app with the <Ext to="https://shop.keyboard.io">Model 01 Keyboard</Ext> in mind. You can still design layouts to use for standard keyboards.
-        The most relevant difference is that the Model 01 has a <em>fn</em> key in addition to the <em>shift</em> key (which lets you stick three characters in each position).
+        Note that I've built this app with the <ExtLink to="https://shop.keyboard.io">Model 01 Keyboard</ExtLink> in mind. You can still design layouts to use for standard keyboards.
+        The most relevant difference is that the Model 01 has a <em>fn</em> key in addition to the <em>shift</em> key (which lets you attach <em>three characters</em> to each key).
       </Typography>
       <Typography variant='headline' gutterBottom>
         Getting started
@@ -141,7 +141,7 @@ class AboutPage extends Component {
           Bigram costs
         </Typography>
         <Typography component='div' style={{padding: '16px 24px 24px 24px'}}>
-          Bigram costs capture the strain of typing one key, then another. They modify the base costs based on local context. (Click to view.)
+          Bigram costs capture the strain of typing one key, then another. They modify the base costs based on local context. (Click to explore.)
         </Typography>
         <div style={{position: 'relative', display: 'flex', alignItems: 'center', flexDirection: 'column', paddingBottom: 8 * 3}}>
           <KeyboardBigramCostView keyboard={this.props.keyboard}/>
@@ -173,10 +173,10 @@ class AboutPage extends Component {
         Hello
       </Typography>
       <Typography gutterBottom>
-        My name is <Ext to="https://payor.com.au">James</Ext>. This project has on my mind for too long.
+        My name is <ExtLink to="https://payor.com.au">James</ExtLink>. This project - tooling to design better keyboard layouts - has on my mind for too long.
       </Typography>
       <Typography style={{paddingBottom: 20}}>
-        This project lives <Ext to="https://github.com/jamespayor/keyboard-layout">on GitHub</Ext>.
+        This app lives <ExtLink to="https://github.com/jamespayor/keyboard-layout">on GitHub</ExtLink>.
         As life is busy, I don't expect to be actively engaging with issues and pull requests.
         (I'll usually be happy to merge in obviously-good content, but less so for redesigns.)
       </Typography>
@@ -190,24 +190,25 @@ class AboutPage extends Component {
         <ul>
           <li>
             Try getting <em>massage</em>. This was the single most helpful thing for me to manage my condition and improve over time, especially when things were rough.
-            In particular, try finding a massage therapist competent in <strong>remedial massage</strong> or <strong>trigger points</strong>, and try having them work on your arms and/or shoulders/back/neck.
-            It should be obvious whether or not your body and arms appreciate await .
+            In particular, try finding a massage therapist competent in <strong>remedial massage</strong> or <strong>trigger point massage</strong>.
+            Try having them work on your arms and/or shoulders/back/neck.
+            It should be obvious whether or not your body and arms appreciate it.
           </li>
           <li>
             Self-massage is a thing, and it's helpful. If this seems like an option, I recommend starting
-            with <Ext to="https://www.amazon.com/Trigger-Point-Therapy-Workbook-Self-Treatment-ebook/dp/B00ECLGALG/">this great book</Ext>.
+            with <ExtLink to="https://www.amazon.com/Trigger-Point-Therapy-Workbook-Self-Treatment-ebook/dp/B00ECLGALG/">this great book</ExtLink>.
             I still find self-massage quite helpful, despite being ostensibly free from RSI these days.
           </li>
           <li>
             Try changing keyboard arrangements and layouts.
-            Insofar as your current setup incentivizes twisting movements in your wrists and fingers, you might find relief from
+            Insofar as your current setup encourages twisting movements in your wrists and fingers, you might find relief from
             e.g. rearranging your keyboard so that your arms can do more of the movement.
             (Your wrists and fingers are the places with small delicate muscles - try to minimize the load on them.)
             For instance, I found it was important to slope my keyboard <em>away</em> from me to stop contorting my wrists while typing.
           </li>
           <li>
             Beware arm and wrist braces that teach you to have atrophied muscles, and put increased strain on your wrists and fingers.
-            I think braces are harmful for me personally, and so recommend caution with them in general - be sure to notice what effects they have for you.
+            All the braces I've tried have harmed my arms on net, and so I recommend caution with them in general - be sure to notice what effects they have for you.
           </li>
         </ul>
         That's all I have for you. Good luck.
