@@ -1,5 +1,5 @@
-import keyboards from "../data/keyboards";
+import {defaultKeyboard} from "../data/keyboards";
 
 export default {
-  keyboard: keyboards.QWERTY,
+  keyboard: defaultKeyboard,
 };

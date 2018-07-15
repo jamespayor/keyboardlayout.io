@@ -1,23 +1,17 @@
 import bruteForce from './brute-force';
 
-let optimizerWasRunning = false;
-let optimizerTask = null;
+// TODO TODO
+import {startOptimization, stopOptimization} from "../redux/actions/optimizer/running";
+
+let optimizerCurrentlyRunning = false;
 
 export default function manageOptimization(reduxState, updateCandidateCallback) {
-  const {keyboard, optimizer: {running: optimizerIsRunning, selection}} = reduxState;
-  if (optimizerIsRunning && !optimizerWasRunning) {
-    optimizerTask = window.hamsters.promise({n: 50}, function() {
-      console.log("thread!");
-      console.log(this.params);
-      for (let i = 0; i < 1000000000000; ++i) {
-        if (i % 100000000 === 0) {
-          console.log("Hi!", i);
-        }
-      }
-    }, () => updateCandidateCallback(1.3, keyboard));
-  } else {
-    window.optimizerTask = optimizerTask;
+  const {keyboard, optimizer: {running: optimizerRequestedRunning, selection}} = reduxState;
+  if (optimizerRequestedRunning && !optimizerCurrentlyRunning) {
+    startOptimization(updateCandidateCallback);
+  } else if (!optimizerRequestedRunning && optimizerCurrentlyRunning) {
+    stopOptimization();
   }
-  optimizerWasRunning = optimizerIsRunning;
+  optimizerCurrentlyRunning = optimizerRequestedRunning;
 };
 

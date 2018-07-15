@@ -31,4 +31,10 @@ const enhancer = persistState(storage, 'keyboard-layout');
 
 export const store = createStore(reducer, initialState, enhancer);
 
+// TODO:
+// - Pipe further information to the optimizer - its target, and its current state.
+// - Provide decent callbacks for pushing new candidates and for updating its state.
+// - Work out how the state-change-triggers-computation model is supposed to work.
+//   => If you update the state, it triggers the listener to fire?
+//   => Need to watch for the cases in which the logic fires.
 store.subscribe(() => optimizerListener(store.getState(), (cost, keyboard) => store.dispatch(updateKeyboardCandidate(cost, keyboard))));
