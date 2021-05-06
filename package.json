@@ -17,7 +17,7 @@
     "redux-localstorage-filter": "^0.1.1",
     "typeface-roboto": "0.0.54",
     "typeface-roboto-mono": "0.0.54",
-    "underscore": "^1.9.0"
+    "underscore": "^1.12.1"
   },
   "scripts": {
     "start": "react-scripts start",
